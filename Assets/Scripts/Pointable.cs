@@ -5,9 +5,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Pointable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler {
-
+    public int keyIndex = 0;
     public bool byColor = false;
     [SerializeField] bool hasDone = false;
+
+    public void Revive() {
+        hasDone = false;
+        if (byColor) {
+            GetComponent<Image>().color = Color.white;
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData) {
         hasDone = true;
@@ -18,6 +25,10 @@ public class Pointable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if(tag == "Ghost") {
             Ghost.Instance.Show();
             Player.instance.animator.SetTrigger("DieForward");
+        }
+        if(tag == "Key") {
+            QuestionController.instance.TriggerQuestion(keyIndex);
+            QuestionController.instance.currentItem = this;
         }
     }
 

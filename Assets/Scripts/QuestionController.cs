@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class QuestionController : MonoBehaviour
 {
+    public static QuestionController instance;
+    public Pointable currentItem;
     public Text question;
     public Text answer1;
     public Text answer2;
@@ -14,13 +16,35 @@ public class QuestionController : MonoBehaviour
     public Text answer4;
 
     public QuestionData[] questions = new QuestionData[4];
-    
+    public Image[] points = new Image[4];
+
+    [SerializeField] int keyID;
+
+    private void Awake() {
+        instance = this;
+    }
+
     public void TriggerQuestion(int index) {
-        question.text = questions[index].question;
-        question.text = questions[index].question;
-        question.text = questions[index].question;
-        question.text = questions[index].question;
-        question.text = questions[index].question;
+        keyID = index;
+        question.text = questions[keyID].question;
+        answer1.text = questions[keyID].answer1;
+        answer2.text = questions[keyID].answer2;
+        answer3.text = questions[keyID].answer3;
+        answer4.text = questions[keyID].answer4;
+        GetComponent<Animator>().Play("Question");
+    }
+
+    public void CheckAnswer(int index) {
+        if(questions[keyID].answer == (AnswerOption)index) {
+            points[keyID].color = Color.white;
+            GetComponent<Animator>().Play("Hide");
+        }
+        else {
+            GetComponent<Animator>().Play("Hide");
+            Ghost.Instance.Show();
+            Player.instance.animator.SetTrigger("DieForward");
+            currentItem.Revive();
+        }
     }
 }
 
