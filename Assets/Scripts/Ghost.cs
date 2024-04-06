@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 鬼魂的各種行為
+/// </summary>
 public class Ghost : MonoBehaviour
 {
     public static Ghost Instance { get; private set; }
@@ -11,7 +14,10 @@ public class Ghost : MonoBehaviour
 
     [SerializeField] int i = 2;
 
-    float end;
+    /// <summary>
+    /// 遊戲結束的 delay
+    /// </summary>
+    float delay;
 
     private void Awake() {
         Instance = this;
@@ -19,13 +25,15 @@ public class Ghost : MonoBehaviour
 
     private void Update() {
         if (i < 0) {
-            end += Time.deltaTime;
-            if (end > 2.5f) {
+            delay += Time.deltaTime;
+            if (delay > 2.5f) {
                 SceneController.instance.EnterScene("RESTART");
             }
         }
     }
-
+    /// <summary>
+    /// 召喚鬼魂 (Jump Scare)
+    /// </summary>
     public void Show() {
         GetComponent<Animator>().Play("Jump");
         GetComponent<AudioSource>().Play();        

@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+/// <summary>
+/// 問答用的控制器
+/// </summary>
 public class QuestionController : MonoBehaviour
 {
     public static QuestionController instance;
@@ -24,6 +27,10 @@ public class QuestionController : MonoBehaviour
         instance = this;
     }
 
+    /// <summary>
+    /// 觸發問題介面
+    /// </summary>
+    /// <param name="index">問題代號</param>
     public void TriggerQuestion(int index) {
         keyID = index;
         question.text = questions[keyID].question;
@@ -33,13 +40,18 @@ public class QuestionController : MonoBehaviour
         answer4.text = questions[keyID].answer4;
         GetComponent<Animator>().Play("Question");
     }
-
+    /// <summary>
+    /// 確認問題是否正確
+    /// </summary>
+    /// <param name="index"></param>
     public void CheckAnswer(int index) {
         if(questions[keyID].answer == (AnswerOption)index) {
+            // 正確時將戰利品亮起
             points[keyID].color = Color.white;
             GetComponent<Animator>().Play("Hide");
         }
         else {
+            // 失敗時召喚鬼魂
             GetComponent<Animator>().Play("Hide");
             Ghost.Instance.Show();
             Player.instance.animator.SetTrigger("DieForward");
