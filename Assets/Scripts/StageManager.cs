@@ -9,6 +9,9 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance;
     public static GameObject current;
     public static GameObject lastone;
+
+    public AudioSource BGM;
+
     /// <summary>
     /// 播放過場音效的來源
     /// </summary>
@@ -29,5 +32,6 @@ public class StageManager : MonoBehaviour
     private void Awake() {
         current = initial;
         Instance = this;
+        BGM.PlayDelayed(5f);
     }
 }

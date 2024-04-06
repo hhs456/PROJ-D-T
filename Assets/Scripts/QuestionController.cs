@@ -22,6 +22,7 @@ public class QuestionController : MonoBehaviour
     public Image[] points = new Image[4];
 
     [SerializeField] int keyID;
+    [SerializeField] int collection = 0;
 
     private void Awake() {
         instance = this;
@@ -49,6 +50,10 @@ public class QuestionController : MonoBehaviour
             // 正確時將戰利品亮起
             points[keyID].color = Color.white;
             GetComponent<Animator>().Play("Hide");
+            collection++;
+            if(collection > 3) {
+                SceneController.instance.EnterScene("SUCCESS");
+            }
         }
         else {
             // 失敗時召喚鬼魂
