@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -50,6 +51,7 @@ public class QuestionController : MonoBehaviour
             // 正確時將戰利品亮起
             points[keyID].color = Color.white;
             GetComponent<Animator>().Play("Hide");
+            currentItem.GetComponent<Animator>().Play("Done");
             collection++;
             if(collection > 3) {
                 SceneController.instance.EnterScene("SUCCESS");

@@ -26,6 +26,10 @@ public class Pointable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData) {
+        if (hasDone)
+        {
+            return;
+        }
         hasDone = true;
         if (byColor) {
             GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1.0f);
@@ -34,6 +38,10 @@ public class Pointable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if(tag == "Ghost") {
             Ghost.Instance.Show();
             Player.instance.animator.SetTrigger("DieForward");
+            if (GetComponent<Animator>() != null)
+            {
+                GetComponent<Animator>().Play("Done");
+            }
         }
         if(tag == "Key") {
             QuestionController.instance.TriggerQuestion(keyIndex);
