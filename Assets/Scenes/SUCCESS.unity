@@ -1104,6 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393b584f51f4b7c4fbfddcac1648cee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMenu: {fileID: 4137888955068765619, guid: 85332283e2020d045badf4ac4230d3d7, type: 3}
 --- !u!82 &1908267055
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1113,7 +1114,7 @@ AudioSource:
   m_GameObject: {fileID: 1908267052}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 06d672a8ca719264093bca7a4dc082b8, type: 2}
+  OutputAudioMixerGroup: {fileID: -1171469501648735754, guid: 065f75fb41fe3de4387ad870dd5aa668, type: 2}
   m_audioClip: {fileID: 8300000, guid: b4e51f2c2bda35e48af4c57617466cda, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1281,7 +1282,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1921816433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1908267054}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: InstanceAudioMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1921816433
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
-
+    public GameObject audioMenu;
+    GameObject clonedAudioMenu;
     private void Awake() {
         instance = this;
     }
@@ -22,5 +24,16 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public void Quit() {
         Application.Quit();
+    }
+    public void InstanceAudioMenu()
+    {
+        clonedAudioMenu = Instantiate(audioMenu, FindObjectOfType<Canvas>().transform);
+    }
+    public void DestroyAudioMenu()
+    {
+        if(clonedAudioMenu != null)
+        {
+            Destroy(clonedAudioMenu);
+        }
     }
 }
