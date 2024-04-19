@@ -51,7 +51,9 @@ public class QuestionController : MonoBehaviour
             // 正確時將戰利品亮起
             points[keyID].color = Color.white;
             GetComponent<Animator>().Play("Hide");
-            currentItem.GetComponent<Animator>().Play("Done");
+            if (currentItem.GetComponent<Animator>()) {
+                currentItem.GetComponent<Animator>().Play("Done");
+            }
             collection++;
             if(collection > 3) {
                 SceneController.instance.EnterScene("SUCCESS");
