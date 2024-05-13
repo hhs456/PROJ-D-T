@@ -11,6 +11,7 @@ public class Ghost : MonoBehaviour
 {
     public static Ghost Instance { get; private set; }
     public Image[] life = new Image[3];
+    public Animation shake;
 
     [SerializeField] int i = 2;
 
@@ -36,7 +37,8 @@ public class Ghost : MonoBehaviour
     /// </summary>
     public void Show() {
         GetComponent<Animator>().Play("Jump");
-        GetComponent<AudioSource>().Play();        
+        GetComponent<AudioSource>().Play();
+        shake.Play();
         life[i--].color = Color.black;        
     }
 }
