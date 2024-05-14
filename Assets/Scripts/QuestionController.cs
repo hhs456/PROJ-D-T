@@ -21,6 +21,7 @@ public class QuestionController : MonoBehaviour
 
     public QuestionData[] questions = new QuestionData[4];
     public Image[] points = new Image[4];
+    public Image[] keyItems = new Image[4];
 
     [SerializeField] int keyID;
     [SerializeField] int collection = 0;
@@ -49,7 +50,8 @@ public class QuestionController : MonoBehaviour
     public void CheckAnswer(int index) {
         if(questions[keyID].answer == (AnswerOption)index) {
             // 正確時將戰利品亮起
-            points[keyID].color = Color.white;
+            points[keyID].gameObject.SetActive(false);
+            keyItems[keyID].gameObject.SetActive(true);
             GetComponent<Animator>().Play("Hide");
             if (currentItem.GetComponent<Animator>()) {
                 currentItem.GetComponent<Animator>().Play("Done");
